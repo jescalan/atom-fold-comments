@@ -1,0 +1,14 @@
+{
+  "name": "fold-comments",
+  "main": "./lib/fold-comments",
+  "version": "0.0.0",
+  "description": "Quickly toggle folding on all comments",
+  "activationEvents": ["fold-comments:toggle"],
+  "repository": "https://github.com/atom/fold-comments",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+  }
+}

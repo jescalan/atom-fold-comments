@@ -1,0 +1,11 @@
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'fold-comments'
+      'submenu': [
+        { 'label': 'Toggle', 'command': 'fold-comments:toggle' }
+      ]
+    ]
+  }
+]
