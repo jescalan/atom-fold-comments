@@ -4,11 +4,12 @@
   "version": "0.0.0",
   "description": "Quickly toggle folding on all comments",
   "activationEvents": ["fold-comments:toggle"],
-  "repository": "https://github.com/atom/fold-comments",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jenius/atom-fold-comments.git"
+  },
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
-  },
-  "dependencies": {
   }
 }
