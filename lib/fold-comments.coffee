@@ -1,9 +1,9 @@
 module.exports =
   activate: (state) ->
-    atom.workspaceView.command "fold-comments:toggle", => @toggle_fold()
+    atom.views.getView(atom.workspace).command "fold-comments:toggle", => @toggle_fold()
 
   toggle_fold: ->
-    editor = atom.workspace.activePaneItem
+    editor = atom.views.getView(atom.workspace).activePaneItem
 
     for row in [0..editor.getLastBufferRow()]
       foldable = editor.isFoldableAtBufferRow(row)
