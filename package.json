@@ -4,7 +4,9 @@
   "version": "0.2.0",
   "description": "Quickly toggle folding on all comments",
   "activationEvents": [
-    "fold-comments:toggle"
+    "fold-comments:toggle",
+    "fold-comments:fold-all",
+    "fold-comments:unfold-all"
   ],
   "repository": {
     "type": "git",
@@ -12,6 +14,6 @@
   },
   "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">0.180.0"
   }
 }
