@@ -1,3 +1,7 @@
+# Modified this file to conform to the new Atom API.
+# As such, it does more or less what it was supposed to do.
+#
+
 # https://gist.github.com/felixrabe/db88674566e14e413c6f
 String::startsWith ?= (s) -> @slice(0, s.length) == s
 String::endsWith   ?= (s) -> s == '' or @slice(-s.length) == s
