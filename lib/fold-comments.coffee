@@ -1,17 +1,32 @@
+# Modified this file to conform to the new Atom API.
+# As such, it does more or less what it was supposed to do.
+#
+
+# https://gist.github.com/felixrabe/db88674566e14e413c6f
+String::startsWith ?= (s) -> @slice(0, s.length) == s
+String::endsWith   ?= (s) -> s == '' or @slice(-s.length) == s
+
 module.exports =
-  activate: (state) ->
-    atom.views.getView(atom.workspace).command "fold-comments:toggle", => @toggle_fold()
-
   toggle_fold: ->
-    editor = atom.views.getView(atom.workspace).activePaneItem
+    editor = atom.workspace.activePaneItem
+    nrows  = editor.getLastBufferRow()
 
-    for row in [0..editor.getLastBufferRow()]
-      foldable = editor.isFoldableAtBufferRow(row)
-      is_comment = @hasScopeForBufferRow(editor, row, 'comment.block')
-      if foldable and is_comment then editor.toggleFoldAtBufferRow(row)
+    # I wanted this to do the following:
+    # ... 1. fold everything
+    # ... 2. unfold outer level blocks of comments, only
+    # If you want that too, just uncomment the next line:
+    # editor.foldAllAtIndentLevel(0)
 
-  hasScopeForBufferRow: (editor, row, scope) ->
-    scopes = editor.scopesForBufferPosition([row, 300])
-    found = false
-    found = true for item in scopes when item.startsWith(scope)
-    found
+    for row in [0..nrows]
+      folding = editor.isFoldableAtBufferRow(row)
+      comment = editor.isBufferRowCommented(row)
+
+      if folding and comment
+          line = editor.lineTextForBufferRow(row)
+          if line.startsWith( '//' ) then editor.toggleFoldAtBufferRow(row)
+
+  activate: ->
+    editor = atom.workspace.activePaneItem
+    atom.workspaceView.command  "fold-comments:toggle", => @toggle_fold()
+
+
