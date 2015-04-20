@@ -1,7 +1,7 @@
 {
   "name": "fold-comments",
   "main": "./lib/fold-comments",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Quickly toggle folding on all comments",
   "activationEvents": [
     "fold-comments:toggle",
