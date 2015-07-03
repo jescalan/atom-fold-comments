@@ -3,13 +3,6 @@
   "main": "./lib/fold-comments",
   "version": "0.4.0",
   "description": "Quickly toggle folding on all comments",
-  "activationCommands": {
-    "atom-workspace": [
-      "fold-comments:toggle",
-      "fold-comments:fold-all",
-      "fold-comments:unfold-all"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jenius/atom-fold-comments.git"
