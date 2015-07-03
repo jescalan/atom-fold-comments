@@ -4,26 +4,20 @@ module.exports = FoldComments =
     atom.commands.add "atom-workspace", "fold-comments:fold-all": => @fold()
     atom.commands.add "atom-workspace", "fold-comments:unfold-all": => @unfold()
 
-  foldAs: (func) ->
-    editor = atom.workspace.getActiveTextEditor()
+  toggle: -> @foldAs('toggle')
 
-    for row in [0..editor.getLastBufferRow()]
-      foldable = editor.isFoldableAtBufferRow(row)
-      is_comment = editor.isBufferRowCommented(row)
+  fold: -> @foldAs('fold')
 
-      if foldable and is_comment
-        if func is 'toggle'
-          editor.toggleFoldAtBufferRow(row)
-        else if func is 'fold'
-          editor.foldBufferRow(row)
-        else if func is 'unfold'
-          editor.unfoldBufferRow(row)
+  unfold: -> @foldAs('unfold')
 
-  toggle: ->
-    @foldAs('toggle')
+  foldAs: (mode, editor) ->
+    editor ||= atom.workspace.getActiveTextEditor()
 
-  fold: ->
-    @foldAs('fold')
+    eachFoldable = (f) ->
+      for row in [0..editor.getLastBufferRow()]
+        f(row) if editor.isFoldableAtBufferRow(row) && editor.isBufferRowCommented(row)
 
-  unfold: ->
-    @foldAs('unfold')
+    switch mode
+      when 'toggle' then eachFoldable (row) -> editor.toggleFoldAtBufferRow(row)
+      when 'fold' then eachFoldable (row) -> editor.foldBufferRow(row)
+      when 'unfold' then eachFoldable (row) -> editor.unfoldBufferRow(row)
