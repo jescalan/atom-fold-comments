@@ -1,7 +1,7 @@
 {
   "name": "fold-comments",
   "main": "./lib/fold-comments",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Quickly toggle folding on all comments",
   "repository": {
     "type": "git",
