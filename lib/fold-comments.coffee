@@ -4,10 +4,13 @@ module.exports = FoldComments =
       type: 'boolean'
       default: false
 
+  #
+  # wow
+  #
   activate: (state) ->
-    atom.commands.add "atom-workspace", "fold-comments:toggle": => @toggle()
-    atom.commands.add "atom-workspace", "fold-comments:fold-all": => @fold()
-    atom.commands.add "atom-workspace", "fold-comments:unfold-all": => @unfold()
+    atom.commands.add("atom-workspace", "fold-comments:toggle": @toggle.bind(@))
+    atom.commands.add("atom-workspace", "fold-comments:fold-all": => @fold.bind(@))
+    atom.commands.add("atom-workspace", "fold-comments:unfold-all": => @unfold.bind(@))
 
     if atom.config.get('fold-comments.autofold')
       atom.workspace.observeTextEditors (editor) =>

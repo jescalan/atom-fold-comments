@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/jenius/atom-fold-comments.git"
   },
+  "activationCommands": {
+    "atom-workspace": "fold-comments:toggle"
+  },
   "license": "MIT",
   "engines": {
     "atom": ">0.180.0"
