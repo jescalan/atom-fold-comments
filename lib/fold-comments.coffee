@@ -27,8 +27,11 @@ module.exports = FoldComments =
     editor ||= atom.workspace.getActiveTextEditor()
 
     eachFoldable = (f) ->
+      lastFoldedRow = -2
       for row in [0..editor.getLastBufferRow()]
-        f(row) if editor.isFoldableAtBufferRow(row) && editor.isBufferRowCommented(row)
+        if editor.isFoldableAtBufferRow(row) && editor.isBufferRowCommented(row) && lastFoldedRow + 1 != row
+          f(row)
+          lastFoldedRow = row
 
     switch mode
       when 'toggle' then eachFoldable (row) -> editor.toggleFoldAtBufferRow(row)
